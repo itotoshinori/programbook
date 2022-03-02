@@ -1,5 +1,5 @@
 const state = {
-  step: 1,
+  step: 2,
   count: 0
 }
 

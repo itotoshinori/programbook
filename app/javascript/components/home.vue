@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <!-- router-viewにコンポーネントが描画される -->
-    <router-view/>
-    <Counter/>
     <div class="form">
       <div class="form-group">
         <input v-model="title" placeholder="title" class="form-control">
@@ -69,7 +67,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 32px;
+  margin-top: 70px;
   &-group {
     margin-bottom: 1rem;
   }

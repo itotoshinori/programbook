@@ -7,14 +7,14 @@
 
 <script>
   export default {
-    name: "Counter",
+    name: "DoubleCounter",
     computed: {
-      step() { return this.$store.getters['counter/step']},
-      count() { return this.$store.getters['counter/count']}
+      step() { return this.$store.getters['doubleCounter/step']},
+      count() { return this.$store.getters['doubleCounter/count']}
     },
     methods: {
       increment() {
-        this.$store.dispatch('counter/increment')
+        this.$store.dispatch('doubleCounter/increment')
       }
     }
   }

@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './components/home.vue'
 import Article from './components/article.vue'
-import Books from './components/books.vue'
+import Books from './components/books/index.vue'
+import Book_detail from './components/books/detail.vue'
  
 Vue.use(Router)
  
@@ -51,14 +52,22 @@ export default new Router({
     //},
     {
       path: '/article/:id',
-      name: 'detail',
+      name: 'Article',
       component: Article
-    },
+      
+      // 非同期でコンポーネントを呼び出す
+      // ※Homeのようにimportしたコンポーネントを設定するのでも可
+      //component: () => import('./components/article.vue')
+    },    
     {
-      path: '/books',
+      path: '/books/index',
       name: 'books',
       component: Books
-    }      
+    },
+    {
+      path: '/books/detail/:id',
+      name: 'book_detail',
+      component: Book_detail
+    }    
   ]
-  
 })

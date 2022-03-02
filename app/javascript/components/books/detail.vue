@@ -1,11 +1,16 @@
 <template>
-  <p>記事No：{{ id }}</p>
+  
+  <div id="app">
+    <p>記事No：{{ id }}</p>
+  
+  <p><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">戻る</a></p>
+  </div>
+  
 </template>
  
 <script>
-import Counter from './Counter.vue';
 export default { 
-  name: 'Article',   
+  name: 'book_detail',   
   data () {
     return {
       id: 0

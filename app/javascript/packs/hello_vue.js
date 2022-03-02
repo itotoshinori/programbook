@@ -12,14 +12,18 @@ import store  from '../store.js'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Vuetify from 'vuetify';
+import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(BootstrapVue);
+Vue.use(Vuetify); // Vuetifyのコンポーネントを使用可能に
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     router: router,
     store:store,
     BootstrapVue,
+    vuetify: new Vuetify(),
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)

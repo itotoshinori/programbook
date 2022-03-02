@@ -13,6 +13,6 @@ class Api::BooksController < ApplicationController
      
     private
     def book_params
-        params.permit(:title, :description)
+        params.permit(:title, :description, :photo)
     end
 end
