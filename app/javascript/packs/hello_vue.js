@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     store:store,
     BootstrapVue,
     vuetify: new Vuetify(),
+    
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)

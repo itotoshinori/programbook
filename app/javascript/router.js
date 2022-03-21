@@ -38,10 +38,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      
-      // 同期でコンポーネントを呼び出す
-      component: Home
+      name: 'books',
+      component: Books
     },
     //{
       //path: '/article/:id',

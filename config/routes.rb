@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  get 'home', to: 'home#index'
+  namespace :api do
+    get 'user/index'
+  end
+  get 'sigin/sigin_out'
+  devise_for :users
+  get '/', to: 'home#index'
   get 'books/index', to: 'books#index'
   get 'books/detail/:id', to: 'books#detail'
   #get 'pages/index'
   #root to: 'pages#index'
   namespace :api, format: 'json' do
     resources :memos, only: [:index, :create]
-    resources :books, only: [:index, :create]
+    resources :books
     resources :users, only: [:index]
   end
-  # Routerのmodeがhashの場合は不要です
   get '/article/:id', to: 'pages#index'
 end

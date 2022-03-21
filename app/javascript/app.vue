@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3 sticky-top">
-     <a class="navbar-brand" href="#">miyacleApp</a>
+     <a class="navbar-brand" href="#">プログラミングお勧め教材</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,8 +10,11 @@
               <li class="nav-item active">
                   <router-link to="/" class="nav-link">Home</router-link>
               </li>
-              <li class="nav-item">
-                  <router-link to="/books/index" class="nav-link">Books</router-link>
+              <li v-if="login_status==false">
+                  <a href="/users/sign_in" class="nav-link">ログイン</a>
+              </li>
+              <li v-if="login_status">
+                  <a href="/sigin/sigin_out" class="nav-link">サインアウト</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="#">サイトについて</a>
@@ -20,9 +23,11 @@
       </div>
     </nav>
     <!-- router-viewにコンポーネントが描画される -->
-    <router-view/> 
+    <!--
     <p><Counter/></p>
     <p><DoubleCounter/></p>
+    -->
+    <router-view/>
   </div>
  </template>
 
@@ -37,6 +42,17 @@ export default {
     Counter,
     DoubleCounter
   },
+  data: function () {
+    return {
+      login_status:''            
+    }
+  },
+  mounted() {
+    axios.get('/api/user/index')
+      .then(response => (
+        this.login_status = response.data.login
+    ))
+  },
 }
 </script>
 <style>
@@ -50,5 +66,9 @@ a {
 a.router-link-exact-active {
   color: black;
   font-weight: bold;
+}
+
+.container{
+ width:90%;
 }
 </style>
