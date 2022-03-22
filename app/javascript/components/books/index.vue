@@ -2,7 +2,7 @@
     <div id="app">
         <div class="container">
             <div>
-                <span v-if="admin_status==true"><b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button></span>
+                <span v-if="admin_status!=2"><b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button></span>
                 <b-modal id="input-modal" title="新規登録" hide-footer>
                     <div class="form">
                         <div class="form-group">
@@ -168,7 +168,7 @@
             this.classificationcode = setting.func2();
             axios.get('/api/users/1')
                 .then(response => (
-                this.admin_status = response.data.admin
+                this.admin_status = response.data.id
             ))
         },
         methods: {

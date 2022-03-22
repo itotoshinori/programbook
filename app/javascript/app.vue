@@ -13,7 +13,7 @@
               <li v-if="admin_status==2">
                   <a href="/users/sign_in" class="nav-link">ログイン{{admin_status}}</a>
               </li>
-              <li v-if="admin_status<>2">
+              <li v-if="admin_status!=2">
                   <a href="/sigin/sigin_out" class="nav-link">サインアウト{{admin_status}}</a>
               </li>
               <li class="nav-item">
