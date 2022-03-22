@@ -1,11 +1,11 @@
 <template>
     <div id="app">
         <span style="display:none">{{ i = 0 }}</span>
-        <span v-for="category in categories">
+        <span v-for="category in categories_rankings">
                 <button @click="toCategory(category.id)" class="btn btn-secondary top_link">{{ category.name }}</button>
             <span style="display:none">{{ i = i +1 }}</span>
         </span>
-        <span v-for="category in categories">
+        <span v-for="category in categories_rankings">
             <div><span class="category_title">{{category.name}}</span><a name :id="category.id"></a><span @click="scrollTop()">先頭に戻る</span></div>
             <table style="border-color: #ff0000;">
                 <tr>
@@ -39,7 +39,7 @@
                                             {{classificationcodes[book.classificationcode].name}}
                                         </span>
                                         <span v-if="book.category_code1" class="badge badge-warning">
-                                            {{book.category_code1-1}}{{categories[book.category_code1-1].name}}
+                                            {{categories[book.category_code1-1].name}}
                                         </span>
                                         <span v-if="book.category_code2" class="badge badge-info">
                                             {{categories[book.category_code2-1].name}}
@@ -82,6 +82,7 @@
                 },
                 category: '',
                 categories: '',
+                categories_rankings:'',
                 category_num: '',
                 classificationcodes:'',
                 admin_status:''
@@ -96,6 +97,7 @@
         mounted() {
             this.setBooks();
             this.categories = setting.func1();
+            this.categories_rankings = setting.func1();
             this.sortedCategoriesByRanking();
             this.classificationcodes = setting.func2();
         },
@@ -123,7 +125,7 @@
                 window.location.href = '/#' + id;
             },
             sortedCategoriesByRanking() {
-                return this.categories.sort((a, b) => {
+                return this.categories_rankings.sort((a, b) => {
                 return a.ranking - b.ranking;
                 });
             },
