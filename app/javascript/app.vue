@@ -22,12 +22,12 @@
          </ul>
       </div>
     </nav>
-    <!-- router-viewにコンポーネントが描画される -->
     <!--
     <p><Counter/></p>
     <p><DoubleCounter/></p>
     -->
     <router-view/>
+   
   </div>
  </template>
 
@@ -40,7 +40,7 @@
 export default {
   components: {
     Counter,
-    DoubleCounter
+    DoubleCounter,
   },
   data: function () {
     return {

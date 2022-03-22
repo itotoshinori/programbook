@@ -105,7 +105,8 @@
                     <p class="text-center"><button @click="addBook" class="btn btn-primary">追加</button></p>
                 </b-modal>
             </div>
-            <Books />
+            <Home />
+            <!--<Books />-->
             <!-- router-viewにコンポーネントが描画される -->
             <router-view />
         </div>
@@ -115,11 +116,13 @@
 <script>
     import axios from 'axios';
     import setting from './setting.js';
+    import Home from '../home';
     import Books from './categories/booksCategory.vue';
 
     export default {
         components: {
-            Books
+            Books,
+            Home
         },
         data: function () {
             return {

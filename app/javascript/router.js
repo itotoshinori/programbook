@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/home.vue'
 import Article from './components/article.vue'
 import Books from './components/books/index.vue'
 import Book_detail from './components/books/detail.vue'
