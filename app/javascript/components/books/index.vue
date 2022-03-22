@@ -2,7 +2,7 @@
     <div id="app">
         <div class="container">
             <div>
-                <span v-if="admin_status"><b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button></span>
+                <span v-if="admin_status==true"><b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button></span>
                 <b-modal id="input-modal" title="新規登録" hide-footer>
                     <div class="form">
                         <div class="form-group">
@@ -105,8 +105,8 @@
                     <p class="text-center"><button @click="addBook" class="btn btn-primary">追加</button></p>
                 </b-modal>
             </div>
-            <Home />
-            <!--<Books />-->
+            <!--<Home />-->
+            <Books />
             <!-- router-viewにコンポーネントが描画される -->
             <router-view />
         </div>
@@ -166,7 +166,7 @@
         mounted() {
             this.categories = setting.func1();
             this.classificationcode = setting.func2();
-            axios.get('/api/user/index')
+            axios.get('/api/users/1')
                 .then(response => (
                 this.admin_status = response.data.admin
             ))

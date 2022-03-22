@@ -87,9 +87,9 @@ export default {
       const category_id = this.category     
       this.$store.dispatch('books/fetchBooks')
       //this.$store.dispatch('books/fetchBooks',category_id)
-      axios.get('/api/users')
+      axios.get('/api/users/1')
       .then(response => (
-        this.id = response.data.user_admin
+        this.admin_status = response.data.user_admin
       ))
     },
     addBook: function() {

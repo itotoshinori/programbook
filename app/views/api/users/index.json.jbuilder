@@ -1,1 +1,1 @@
-json.admin @admin            
+json.array! @users, :id, :email, :admin           

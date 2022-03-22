@@ -21,7 +21,7 @@
                                     <p class="menu-title">
                                         <router-link :to="`books/detail/${book.id}`">{{book.title}}</router-link>
                                         <span v-if="book.introductory" class="badge badge-info">入門書</span>
-                                        <span v-if="admin_status" @click="deleteBook(book.id)" class="badge badge-danger">削除</span>
+                                        <span v-if="admin_status == true" @click="deleteBook(book.id)" class="badge badge-danger">削除</span>
                                     </p>
                                     <P>
                                         <span v-if="book.amazon">

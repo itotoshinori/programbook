@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     resources :memos, only: [:index, :create]
     resources :books
-    resources :users, only: [:index]
+    resources :users, only: [:index,:show]
   end
   get '/article/:id', to: 'pages#index'
 end

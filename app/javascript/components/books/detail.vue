@@ -44,7 +44,7 @@
       </div>
       <br>
       <p style="text-align:center;"><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
-      <span v-if="admin_status"><p style="text-align:center;"><Input /></p></span>
+      <span v-if="admin_status==true"><p style="text-align:center;"><Input /></p></span>
     </div>
   </div>
   
@@ -75,7 +75,7 @@ export default {
     this.setBook();
     this.categories = setting.func1();
     this.classificationcodes = setting.func2();
-    axios.get('/api/user/index')
+    axios.get('/api/users/1')
       .then(response => (
       this.admin_status = response.data.admin
     ))

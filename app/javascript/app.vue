@@ -48,7 +48,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('/api/user/index')
+    axios.get('/api/users/1')
       .then(response => (
         this.admin_status = response.data.admin
     ))
