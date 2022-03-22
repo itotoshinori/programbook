@@ -62,7 +62,7 @@
                                 <option disabled value="">カテゴリーを選択</option>
                                 <option v-for="category in categories" v-bind:value="category.id"
                                     v-bind:key="category.id">
-                                    {{ category.name }}
+                                    {{ category.id }}{{ category.name }}
                                 </option>
                             </select>
                             <span v-if="error.category_code1">
