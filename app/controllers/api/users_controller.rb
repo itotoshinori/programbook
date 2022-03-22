@@ -8,9 +8,8 @@ class Api::UsersController < ApplicationController
     #render :json => user
   end
   def show
-    @user = User.find(params[:id])
     if user_signed_in?
-      
+      @user = current_user
     else
       @user.admin = false 
     end
