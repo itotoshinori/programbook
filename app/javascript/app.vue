@@ -10,10 +10,10 @@
               <li class="nav-item active">
                   <router-link to="/" class="nav-link">Home</router-link>
               </li>
-              <li v-if="admin_status==false">
+              <li v-if="admin_status==2">
                   <a href="/users/sign_in" class="nav-link">ログイン{{admin_status}}</a>
               </li>
-              <li v-if="admin_status">
+              <li v-if="admin_status==1">
                   <a href="/sigin/sigin_out" class="nav-link">サインアウト{{admin_status}}</a>
               </li>
               <li class="nav-item">
@@ -50,7 +50,7 @@ export default {
   mounted() {
     axios.get('/api/users/1')
       .then(response => (
-        this.admin_status = response.data.admin
+        this.admin_status = response.data.id
     ))
   },
 }

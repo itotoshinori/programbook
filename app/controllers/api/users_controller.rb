@@ -10,9 +10,9 @@ class Api::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if user_signed_in?  
-      @user.admin = true
+      
     else
-      @user.admin = false
+      @user.id = 2
     end
   end
 end
