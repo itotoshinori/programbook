@@ -89,7 +89,7 @@ export default {
       //this.$store.dispatch('books/fetchBooks',category_id)
       axios.get('/api/users/1')
       .then(response => (
-        this.admin_status = response.data.user_admin
+        this.admin_status = response.data.admin
       ))
     },
     addBook: function() {
