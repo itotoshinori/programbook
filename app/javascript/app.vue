@@ -11,10 +11,10 @@
                   <router-link to="/" class="nav-link">Home</router-link>
               </li>
               <li v-if="admin_status==false">
-                  <a href="/users/sign_in" class="nav-link">ログイン</a>
+                  <a href="/users/sign_in" class="nav-link">ログイン{{admin_status}}</a>
               </li>
               <li v-if="admin_status">
-                  <a href="/sigin/sigin_out" class="nav-link">サインアウト</a>
+                  <a href="/sigin/sigin_out" class="nav-link">サインアウト{{admin_status}}</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="#">サイトについて</a>
