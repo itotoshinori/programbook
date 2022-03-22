@@ -2,7 +2,7 @@
     <div id="app">
         <div class="container">
             <div>
-                <span v-if="login_status"><b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button></span>
+                <span v-if="admin_status"><b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button></span>
                 <b-modal id="input-modal" title="新規登録" hide-footer>
                     <div class="form">
                         <div class="form-group">
@@ -99,8 +99,10 @@
                             <input v-model="post.rakuten" placeholder="楽天URL" class="form-control">
                         </div>
                         </span>
-                        <button @click="addBook" class="btn btn-primary">追加</button>
                     </div>
+                    <p class="modal_checkbox"><input v-model="post.introductory" type="checkbox" name="checkbox"  />
+                    入門書 </p> 
+                    <p class="text-center"><button @click="addBook" class="btn btn-primary">追加</button></p>
                 </b-modal>
             </div>
             <Books />
@@ -134,7 +136,8 @@
                     official_site: '',
                     amazon: '',
                     rakuten: '',
-                    publication_date: ''
+                    publication_date: '',
+                    introductory:false
                 },
                 error: {
                     title: "",
@@ -149,7 +152,7 @@
                 },
                 category: '',
                 categories: '',
-                login_status:''
+                admin_status:''
             }
         },
         computed: {
@@ -162,7 +165,7 @@
             this.classificationcode = setting.func2();
             axios.get('/api/user/index')
                 .then(response => (
-                this.login_status = response.data.login
+                this.admin_status = response.data.admin
             ))
         },
         methods: {
@@ -174,18 +177,24 @@
                     this.post.category_code1 != '' &&
                     this.post.official_site != '' &&
                     this.post.publication_date != '') {
-                    this.$store.dispatch('books/createBook', this.post)
-                    this.post = {}
-                    this.error = {}
-                    this.$store.dispatch('books/fetchBooks')
-                    this.$store.dispatch('books/fetchBooks')
-                    this.closeModal()
+                    if(this.$store.dispatch('books/createBook', this.post)){
+                        this.post = {}
+                        this.error = {}
+                        this.$store.dispatch('books/fetchBooks')
+                        this.$store.dispatch('books/fetchBooks')
+                        this.closeModal()
+                    }else{
+                        alert('データの登録に失敗しました。文字の長さ等のご確認をお願いします')
+                    }  
                 } else {
                     if (this.post.title == '') {
                         this.error.title = "入力して下さい"
                     }
                     if (this.post.photo == '') {
                         this.error.photo = "入力して下さい"
+                    }
+                    if (this.post.author == '') {
+                        this.error.author = "入力して下さい"
                     }
                     if (this.post.publisher == '') {
                         this.error.publisher = "入力して下さい"
@@ -323,5 +332,9 @@
 
     .label-left-margin {
         margin-left: 5px;
+    }
+
+    .modal_checkbox{
+        margin-left: 20px;
     }
 </style>

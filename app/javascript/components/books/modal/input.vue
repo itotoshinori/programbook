@@ -3,7 +3,7 @@
         <div class="container">
             <b-button pill v-b-modal.input-modal variant="primary">編集</b-button>
             <b-modal id="input-modal" title="編集" hide-footer>
-                <div class="form">
+                <div class="form-group">
                     <div class="form-group">
                         <label class="label-left-margin">タイトル</label>
                         <input v-model="book.title" placeholder="タイトル" class="form-control">
@@ -72,9 +72,11 @@
                     <input v-model="book.rakuten" placeholder="楽天URL" class="form-control">
                 </div>
                 </span>
+                <p class="modal_checkbox"><input v-model="book.introductory" type="checkbox" name="checkbox"  />
+                    入門書 </p> 
                 <div class="button_wrapper" style="text-align:center;">
                     <button @click="updateBook" class="btn btn-primary">修正</button>
-                </div>
+                </div>       
             </b-modal>
         </diV>
     </div>
@@ -104,7 +106,8 @@
                     official_site:'',
                     amazon:'',
                     rakuten:'',
-                    publication_date:''
+                    publication_date:'',
+                    introductory:false
                 },
                 category: '',
                 categories: '',
@@ -127,8 +130,11 @@
             updateBook: function(){
                 this.post.id = this.book.id
                 this.post = this.book
-                this.$store.dispatch('books/updateBook',this.post)
-                this.closeModal()
+                if(this.$store.dispatch('books/updateBook',this.post)){
+                    this.closeModal()
+                }else{
+                    alert('データの更新に失敗しました。文字の長さなどを確認願います')
+                }
             },
             openModal: function() {
                 // 開く
@@ -202,5 +208,9 @@
 
     .site_link {
         width: 120px;
+    }
+
+    .modal_checkbox{
+        margin-left: 5px;
     }
 </style>

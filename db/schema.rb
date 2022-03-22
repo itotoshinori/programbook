@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_19_071543) do
+ActiveRecord::Schema.define(version: 2022_03_21_054545) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "book_code"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 2022_03_19_071543) do
     t.string "amazon"
     t.string "rakuten"
     t.date "publication_date"
+    t.integer "qiita_point"
+    t.integer "search_point"
+    t.integer "recommended_point"
+    t.boolean "introductory"
   end
 
   create_table "memos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

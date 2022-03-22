@@ -20,7 +20,8 @@
                                     </p>
                                     <p class="menu-title">
                                         <router-link :to="`books/detail/${book.id}`">{{book.title}}</router-link>
-                                        <span v-if="login_status" @click="deleteBook(book.id)" class="badge badge-danger">削除</span>
+                                        <span v-if="book.introductory" class="badge badge-info">入門書</span>
+                                        <span v-if="admin_status" @click="deleteBook(book.id)" class="badge badge-danger">削除</span>
                                     </p>
                                     <P>
                                         <span v-if="book.amazon">
@@ -83,7 +84,7 @@
                 categories: '',
                 category_num: '',
                 classificationcodes:'',
-                login_status:''
+                admin_status:''
             }
         },
         computed: {
@@ -105,7 +106,7 @@
                 //this.$store.dispatch('books/fetchBooks',category_id)
                 axios.get('api/user/index')
                     .then(response => (
-                    this.login_status = response.data.login
+                    this.admin_status = response.data.admin
                 ))
             },
             deleteBook:function(id) {
@@ -180,6 +181,7 @@
     .classificationcode_wide{
         width:55px;
     }
+    
     .site_link{
         margin: 5px 5px 0 0;
     }

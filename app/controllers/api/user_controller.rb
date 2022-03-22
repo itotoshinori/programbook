@@ -1,9 +1,9 @@
 class Api::UserController < ApplicationController
   def index
     if user_signed_in?
-      user = {'login' => true}
+      user = {'admin' => true} if current_user.id == 1
     else
-      user = {'login' => false}
+      user = {'admin' => false}
     end
     render :json => user
   end

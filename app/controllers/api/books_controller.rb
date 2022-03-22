@@ -13,7 +13,7 @@ class Api::BooksController < ApplicationController
         @book = Book.find(params[:id])
         @book.update(book_params)
         if @book.save
-          render :show, status: :updated
+          render json: show, status: 200
         else
           render json: @book.errors, status: :unprocessable_entity
         end
@@ -32,6 +32,6 @@ class Api::BooksController < ApplicationController
      
     private
     def book_params
-        params.permit(:title, :description, :photo, :publisher, :author, :classificationcode, :category_code1, :category_code2, :category_code3, :official_site, :amazon, :rakuten, :publication_date)
+        params.permit(:title, :description, :photo, :publisher, :author, :classificationcode, :category_code1, :category_code2, :category_code3, :official_site, :amazon, :rakuten, :publication_date, :introductory)
     end
 end

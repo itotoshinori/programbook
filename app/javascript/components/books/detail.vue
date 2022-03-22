@@ -8,11 +8,14 @@
           </span>
         </div>
         <div class="element2">
-          <p class="title_back">{{book.title}}</p>
+          <p class="title_back">
+            {{book.title}}
+          </p>
           <p>著　者：{{book.author}}</p>
           <p>出版社：{{book.publisher}}</p>
           <p v-if="book.publication_date">発刊日：{{book.publication_date}}</p>
           <p>
+            <span v-if="book.introductory" class="badge badge-info">入門書</span>
             <span v-if="book.classificationcode" class="badge badge-pill badge-secondary classificationcode_wide">
               {{classificationcodes[book.classificationcode].name}}
             </span>
@@ -41,7 +44,7 @@
       </div>
       <br>
       <p style="text-align:center;"><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
-      <span v-if="login_status"><p style="text-align:center;"><Input /></p></span>
+      <span v-if="admin_status"><p style="text-align:center;"><Input /></p></span>
     </div>
   </div>
   
@@ -62,7 +65,7 @@ export default {
       id: 0,
       categories:'',
       classificationcodes:'',
-      login_status:''
+      admin_status:'admin'
     }
   },
   computed: {
@@ -74,7 +77,7 @@ export default {
     this.classificationcodes = setting.func2();
     axios.get('/api/user/index')
       .then(response => (
-      this.login_status = response.data.login
+      this.admin_status = response.data.admin
     ))
   },
   methods: {

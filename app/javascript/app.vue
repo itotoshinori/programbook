@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3 sticky-top">
-     <a class="navbar-brand" href="#">プログラミングお勧め教材</a>
+     <a class="navbar-brand" href="/">プログラミングお勧め教材</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,10 +10,10 @@
               <li class="nav-item active">
                   <router-link to="/" class="nav-link">Home</router-link>
               </li>
-              <li v-if="login_status==false">
+              <li v-if="admin_status==false">
                   <a href="/users/sign_in" class="nav-link">ログイン</a>
               </li>
-              <li v-if="login_status">
+              <li v-if="admin_status">
                   <a href="/sigin/sigin_out" class="nav-link">サインアウト</a>
               </li>
               <li class="nav-item">
@@ -44,13 +44,13 @@ export default {
   },
   data: function () {
     return {
-      login_status:''            
+      admin_status:'admin'            
     }
   },
   mounted() {
     axios.get('/api/user/index')
       .then(response => (
-        this.login_status = response.data.login
+        this.admin_status = response.data.admin
     ))
   },
 }

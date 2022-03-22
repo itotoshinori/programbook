@@ -41,7 +41,8 @@ const actions = {
       official_site:post.official_site,
       amazon:post.amazon,
       rakuten:post.rakuten,
-      publication_date:post.publication_date
+      publication_date:post.publication_date,
+      introductory:post.introductory
     })
     commit('createBook', response.data);
   },
@@ -61,7 +62,8 @@ const actions = {
       official_site:post.official_site,
       amazon:post.amazon,
       rakuten:post.rakuten,
-      publication_date:post.publication_date
+      publication_date:post.publication_date,
+      introductory:post.introductory
     })
   },
   deleteBook({ commit }, id){
