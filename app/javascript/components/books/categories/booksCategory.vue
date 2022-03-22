@@ -39,7 +39,7 @@
                                             {{classificationcodes[book.classificationcode].name}}
                                         </span>
                                         <span v-if="book.category_code1" class="badge badge-warning">
-                                            {{categories[book.category_code1-1].name}}
+                                            {{book.category_code1-1}}{{categories[book.category_code1-1].name}}
                                         </span>
                                         <span v-if="book.category_code2" class="badge badge-info">
                                             {{categories[book.category_code2-1].name}}
