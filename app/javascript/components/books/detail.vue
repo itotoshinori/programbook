@@ -1,13 +1,45 @@
 <template>
   <div id="app">
-    <div class="main-box">
-      
+    <div class="container">
+      <h2>{{book.title}}</h2>
+      <figure>
+        <span v-if="book.photo">
+            <img :src="book.photo" />
+        </span>
+      </figure>
+      <h5>著　者：{{book.author}}</h5>
+      <h5>出版社：{{book.publisher}}</h5>
+      <h5 v-if="book.publication_date">発刊日：{{book.publication_date}}</h5>
+      <p>
+        <span v-if="book.introductory" class="badge badge-info">入門書</span>
+        <span v-if="book.classificationcode" class="badge badge-pill badge-secondary classificationcode_wide">
+          {{classificationcodes[book.classificationcode].name}}
+        </span>
+        <span v-if="book.category_code1" class="badge badge-warning">
+          {{categories[book.category_code1-1].name}}
+        </span>
+        <span v-if="book.category_code2" class="badge badge-info">
+          {{categories[book.category_code2-1].name}}
+        </span>
+        <span v-if="book.category_code3" class="badge badge-dark">
+          {{categories[book.category_code3-1].name}}
+        </span>
+      </p>
+      <P>
+        <span v-if="book.official_site">
+          <a :href="book.official_site" target="_blank" class="btn btn-primary site_link">公式サイト</a>
+        </span>
+        <span v-if="book.amazon">
+          <a :href="book.amazon" target="_blank" class="btn btn-warning site_link">Amazon</a>
+        </span>
+        <span v-if="book.rakuten">
+          <a :href="book.rakuten" target="_blank" class="btn btn-danger site_link">楽天</a>
+        </span>
+      </p>
+      <p><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
+      <span v-if="admin_status==true"><p><Input /></p></span>
     </div>
-    <br>
-    <p style="text-align:center;"><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
-    <span v-if="admin_status==true"><p style="text-align:center;"><Input /></p></span>
-  </div>
-  
+  </div>  
 </template>
  
 <script>
@@ -59,8 +91,24 @@ export default {
 
  
 <style scoped>
+p {
+	margin-bottom: 15px;
+	line-height: 1.6em;
+  overflow: hidden;
+}
+.float_none {
+	clear: both;
+}
+figure {
+	float: left;
+	margin: 0 15px 15px 0;
+	width: 30%;
+}
+figure img {
+	max-width: 100%;
+}
 .container{
- width:90%;
+ width:60%;
 }
 .main-box{
   width:90%;
@@ -78,6 +126,12 @@ export default {
   margin:auto; 
   display:flex;
 }
+.photo_box{
+  margin:auto;
+  width:70%;
+  background:white;
+  height:400px;
+}
 .element1{
   width:300px;
   border: 1px;
@@ -89,11 +143,6 @@ export default {
 }
 .element2 p{
   font-size:20px;
-}
-.photo_box {
-  margin:2px 0.5px 0.5px 0.5px; 
-  padding:0px; 
-  height: 10px;
 }
 .photo_just {
   display: block;
@@ -111,8 +160,8 @@ export default {
   background-position: 0 0, 25px 25px;
 }
 .site_link{
-  width:110px;
-  margin:0 5px 10px 0;
+  width:200px;
+  margin:0 10px 10px 0;
 }
 .classificationcode_wide{
   width:55px;
