@@ -1,47 +1,7 @@
 <template>
   <div id="app">
     <div class="main-box">
-      <div class="sub-box">
-        <div class="element1">
-          <span v-if="book.photo">
-            <img :src="book.photo" class="photo_just"/>
-          </span>
-        </div>
-        <div class="element2">
-          <p class="title_back">
-            {{book.title}}
-          </p>
-          <p>著　者：{{book.author}}</p>
-          <p>出版社：{{book.publisher}}</p>
-          <p v-if="book.publication_date">発刊日：{{book.publication_date}}</p>
-          <p>
-            <span v-if="book.introductory" class="badge badge-info">入門書</span>
-            <span v-if="book.classificationcode" class="badge badge-pill badge-secondary classificationcode_wide">
-              {{classificationcodes[book.classificationcode].name}}
-            </span>
-            <span v-if="book.category_code1" class="badge badge-warning">
-              {{categories[book.category_code1-1].name}}
-            </span>
-            <span v-if="book.category_code2" class="badge badge-info">
-              {{categories[book.category_code2-1].name}}
-            </span>
-            <span v-if="book.category_code3" class="badge badge-dark">
-              {{categories[book.category_code3-1].name}}
-            </span>
-          </p>
-          <P>
-            <span v-if="book.official_site">
-              <a :href="book.official_site" target="_blank" class="btn btn-primary site_link">公式サイト</a>
-            </span>
-            <span v-if="book.amazon">
-              <a :href="book.amazon" target="_blank" class="btn btn-warning site_link">Amazon</a>
-            </span>
-            <span v-if="book.rakuten">
-              <a :href="book.rakuten" target="_blank" class="btn btn-danger site_link">楽天</a>
-            </span>
-          </p>
-        </div>
-      </div>
+      
     </div>
     <br>
     <p style="text-align:center;"><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
@@ -104,7 +64,13 @@ export default {
 }
 .main-box{
   width:90%;
-  margin:auto; 
+  margin:auto;
+  box-sizing: content-box;
+  width: 80%;
+  height:400px;
+  border: solid #5B6DCD 10px;
+  padding: 5px;
+  background: yellow;
 }
 .sub-box{
   background: white;
