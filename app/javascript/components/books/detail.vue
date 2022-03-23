@@ -160,7 +160,7 @@ figure img {
   background-position: 0 0, 25px 25px;
 }
 .site_link{
-  width:200px;
+  width:150px;
   margin:0 10px 10px 0;
 }
 .classificationcode_wide{
