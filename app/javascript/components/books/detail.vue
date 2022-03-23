@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <div class="container">
-      <div class="wrapper">
+    <div class="main-box">
+      <div class="sub-box">
         <div class="element1">
           <span v-if="book.photo">
             <img :src="book.photo" class="photo_just"/>
@@ -42,10 +42,10 @@
           </p>
         </div>
       </div>
-      <br>
-      <p style="text-align:center;"><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
-      <span v-if="admin_status==true"><p style="text-align:center;"><Input /></p></span>
     </div>
+    <br>
+    <p style="text-align:center;"><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
+    <span v-if="admin_status==true"><p style="text-align:center;"><Input /></p></span>
   </div>
   
 </template>
@@ -100,15 +100,17 @@ export default {
  
 <style scoped>
 .container{
- width:65%;
+ width:90%;
 }
-.photo_box {
-  margin:2px 0.5px 0.5px 0.5px; 
-  padding:0px; 
-  height: 10px;
+.main-box{
+  width:90%;
+  margin:auto; 
 }
-.wrapper {
-   display:flex;
+.sub-box{
+  background: white;
+  width:70%;
+  margin:auto; 
+  display:flex;
 }
 .element1{
   width:300px;
@@ -116,17 +118,22 @@ export default {
 }
 .element2{
   width:500px;
-  padding:10px;
+  padding:5px;
   border: dashed 2px #5b8bd0;/*点線*/
 }
 .element2 p{
   font-size:20px;
 }
+.photo_box {
+  margin:2px 0.5px 0.5px 0.5px; 
+  padding:0px; 
+  height: 10px;
+}
 .photo_just {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 280px;
+  width: 250px;
   height: auto;
 }
 .title_back {
@@ -141,7 +148,6 @@ export default {
   width:110px;
   margin:0 5px 10px 0;
 }
-
 .classificationcode_wide{
   width:55px;
 }
