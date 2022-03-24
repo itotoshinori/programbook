@@ -3,14 +3,15 @@ class Scrapingbook
     require 'open-uri'
     require 'uri'
     def books_point_repair()
-        @books = Book.all
+        #@books = Book.all
         #@books.each do |book|
-            book = Book.find(94)
+            book = Book.find(304)
             if book.classificationcode == 1
                 blog = "ブログ "
             else
                 blog = nil
             end
+            #target = "新・明解Javaで学ぶアルゴリズムとデータ構造"
             target = "#{blog}#{book.title} #{book.author} #{book.publisher}" 
             target_url = URI.encode_www_form(q: target)
             url = "https://cgi.search.biglobe.ne.jp/cgi-bin/search-period?#{target_url}&num=10&lr=all&as_qdr=y"
