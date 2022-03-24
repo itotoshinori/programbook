@@ -20,7 +20,6 @@
                                         </span>
                                     </p>
                                     <p class="menu-title">
-                                        <span style="display:none">{{ ranking = ranking + 1 }}</span>
                                         <span class="badge badge-dark">{{ ranking }}位</span>
                                         <router-link :to="`books/detail/${book.id}`">{{book.title}}</router-link>
                                         <span v-if="book.introductory" class="badge badge-info">入門書</span>
