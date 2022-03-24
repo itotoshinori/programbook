@@ -11,6 +11,7 @@ class Scrapingbook
             else
                 blog = nil
             end
+            book.id
         #end
     end
 end
