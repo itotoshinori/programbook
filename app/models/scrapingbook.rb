@@ -16,6 +16,8 @@ class Scrapingbook
             target_url = URI.encode_www_form(q: target)
             target
             url = "https://cgi.search.biglobe.ne.jp/cgi-bin/search-period?#{target_url}&num=10&lr=all&as_qdr=y"
+            html = URI.open(url).read
+            doc = Nokogiri::HTML.parse(html)
         #end
     end
 end
