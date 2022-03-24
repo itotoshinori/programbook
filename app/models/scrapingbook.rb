@@ -12,7 +12,10 @@ class Scrapingbook
                 blog = nil
             end
             target = "#{blog}#{book.title} #{book.author} #{book.publisher}" 
+            
             target_url = URI.encode_www_form(q: target)
+            target
+            #url = "https://cgi.search.biglobe.ne.jp/cgi-bin/search-period?#{target_url}&num=10&lr=all&as_qdr=y"
         #end
     end
 end
