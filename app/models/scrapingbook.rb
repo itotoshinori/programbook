@@ -5,7 +5,7 @@ class Scrapingbook
     def books_point_repair()
         #@books = Book.all
         #@books.each do |book|
-            book = Book.find(304)
+            book = Book.find(294)
             if book.classificationcode == 1
                 blog = "ブログ "
             else
