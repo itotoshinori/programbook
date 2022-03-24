@@ -11,7 +11,8 @@ class Scrapingbook
             else
                 blog = nil
             end
-            book.id
+            target = "#{blog}#{book.title} #{book.author} #{book.publisher}" 
+            target_url = URI.encode_www_form(q: target)
         #end
     end
 end
