@@ -1,6 +1,6 @@
 class Api::BooksController < ApplicationController
     def index
-        @books = Book.order("category_code1").order('publication_date DESC')
+        @books = Book.order("category_code1").order('point DESC').order('publication_date DESC')
         catgory = params[:category_id]
         if catgory
             @books = @books.where(category_code1:catgory)

@@ -10,11 +10,15 @@
               <li class="nav-item active">
                   <router-link to="/" class="nav-link">Home</router-link>
               </li>
+              <li v-if="admin_status==true">
+                  <a href="javascript:void(0);" onclick="var ok=confirm('本当に実行しますか？');
+                    if (ok) location.href='/scrapings/index'; return false;" class="nav-link">スクレーピング</a>
+              </li>
               <li v-if="admin_status!=true">
-                  <a href="/users/sign_in" class="nav-link">ログイン{{admin_status}}</a>
+                  <a href="/users/sign_in" class="nav-link">ログイン</a>
               </li>
               <li v-if="admin_status==true">
-                  <a href="/sigin/sigin_out" class="nav-link">サインアウト{{admin_status}}</a>
+                  <a href="/sigin/sigin_out" class="nav-link">サインアウト</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="#">サイトについて</a>

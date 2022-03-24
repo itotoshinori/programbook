@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'scrapings/index'
   namespace :api do
     get 'user/index'
   end

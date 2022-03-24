@@ -10,6 +10,7 @@
       <h5>著　者：{{book.author}}</h5>
       <h5>出版社：{{book.publisher}}</h5>
       <h5 v-if="book.publication_date">発刊日：{{book.publication_date}}</h5>
+      <h5>調査点：{{ book.point }}点</h5>
       <p>
         <span v-if="book.introductory" class="badge badge-info">入門書</span>
         <span v-if="book.classificationcode" class="badge badge-pill badge-secondary classificationcode_wide">
@@ -37,7 +38,9 @@
         </span>
       </p>
       <p><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
-      <span v-if="admin_status==true"><p><Input /></p></span>
+      <span v-if="admin_status==true">
+        <p><Input /></p>
+      </span>
     </div>
   </div>  
 </template>
@@ -91,13 +94,12 @@ export default {
 
  
 <style scoped>
-p {
+.container{
+ width:60%;
+}
+.content {
 	margin-bottom: 15px;
 	line-height: 1.6em;
-  overflow: hidden;
-}
-.float_none {
-	clear: both;
 }
 figure {
 	float: left;
@@ -106,58 +108,6 @@ figure {
 }
 figure img {
 	max-width: 100%;
-}
-.container{
- width:60%;
-}
-.main-box{
-  width:90%;
-  margin:auto;
-  box-sizing: content-box;
-  width: 80%;
-  height:400px;
-  border: solid #5B6DCD 10px;
-  padding: 5px;
-  background: yellow;
-}
-.sub-box{
-  background: white;
-  width:70%;
-  margin:auto; 
-  display:flex;
-}
-.photo_box{
-  margin:auto;
-  width:70%;
-  background:white;
-  height:400px;
-}
-.element1{
-  width:300px;
-  border: 1px;
-}
-.element2{
-  width:500px;
-  padding:5px;
-  border: dashed 2px #5b8bd0;/*点線*/
-}
-.element2 p{
-  font-size:20px;
-}
-.photo_just {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 250px;
-  height: auto;
-}
-.title_back {
-  padding: 4px;
-  color: #fff;
-  background: #015dac;
-  background-image: radial-gradient(#0175d5 13%, transparent 13%), radial-gradient(#0175d5 13%, transparent 13%);
-  background-size: 50px 50px;
-  background-position: 0 0, 25px 25px;
 }
 .site_link{
   width:150px;
