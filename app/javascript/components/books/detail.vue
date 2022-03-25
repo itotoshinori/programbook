@@ -10,7 +10,7 @@
       <h5>著　者：{{book.author}}</h5>
       <h5>出版社：{{book.publisher}}</h5>
       <h5 v-if="book.publication_date">発刊日：{{book.publication_date}}</h5>
-      <h5>調査点：{{ book.total_point }}点(カテゴリーランク{{ book.category_rank }}位)</h5>
+      <h5>調査点：{{ book.total_point }}点(カテゴリー{{ book.category_rank }}位)</h5>
       <p>
         <span v-if="book.introductory" class="badge badge-info">入門書</span>
         <span v-if="book.classificationcode" class="badge badge-pill badge-secondary classificationcode_wide">
@@ -37,7 +37,7 @@
           <a :href="book.rakuten" target="_blank" class="btn btn-danger site_link">楽天</a>
         </span>
       </p>
-      <p><a href="#" class="btn btn-success" onclick="history.back(-1);return false;">前のページに戻る</a></p>
+      <p><a href="#"  onclick="history.back(-1);return false;">前にページに戻る</a></p>
       <span v-if="admin_status==true">
         <p><Input /></p>
       </span>
@@ -110,8 +110,8 @@ figure img {
 	max-width: 100%;
 }
 .site_link{
-  width:150px;
-  margin:0 10px 10px 0;
+  width:110px;
+  margin:0 10px 5px 0;
 }
 .classificationcode_wide{
   width:55px;
