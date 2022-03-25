@@ -10,7 +10,7 @@
       <h5>著　者：{{book.author}}</h5>
       <h5>出版社：{{book.publisher}}</h5>
       <h5 v-if="book.publication_date">発刊日：{{book.publication_date}}</h5>
-      <h5>調査点：{{ book.point }}点</h5>
+      <h5>調査点：{{ book.total_point }}点(カテゴリーランク{{ book.category_rank }}位)</h5>
       <p>
         <span v-if="book.introductory" class="badge badge-info">入門書</span>
         <span v-if="book.classificationcode" class="badge badge-pill badge-secondary classificationcode_wide">

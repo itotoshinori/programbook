@@ -6,8 +6,8 @@
             <span style="display:none">{{ i = i +1 }}</span>
         </span>
         <span v-for="category in categories_rankings">
+            <span style="display:none">{{ rank=0 }}</span>
             <div><span class="category_title">{{category.name}}</span><a name :id="category.id"></a><span @click="scrollTop()">先頭に戻る</span></div>
-            <span style="display:none">{{ ranking = 0 }}</span>
             <table style="border-color: #ff0000;">
                 <tr>
                     <span v-for="book in books" :key="book.id">
@@ -20,7 +20,7 @@
                                         </span>
                                     </p>
                                     <p class="menu-title">
-                                        <span class="badge badge-dark">{{ ranking }}位</span>
+                                        <span class="badge badge-dark">{{ book.category_rank }}位</span>
                                         <router-link :to="`books/detail/${book.id}`">{{book.title}}</router-link>
                                         <span v-if="book.introductory" class="badge badge-info">入門書</span>
                                         <span v-if="admin_status == true" @click="deleteBook(book.id)" class="badge badge-danger">削除</span>

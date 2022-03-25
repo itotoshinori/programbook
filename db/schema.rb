@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_122721) do
+ActiveRecord::Schema.define(version: 2022_03_24_230525) do
 
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "book_code"
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 2022_03_22_122721) do
     t.integer "search_point"
     t.integer "recommended_point"
     t.boolean "introductory"
+    t.float "evaluation"
+    t.integer "total_point"
+    t.integer "category_rank"
   end
 
   create_table "memos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

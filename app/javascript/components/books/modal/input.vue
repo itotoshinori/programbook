@@ -74,13 +74,21 @@
                 </span>
                 <p class="modal_checkbox"><input v-model="book.introductory" type="checkbox" name="checkbox"  />
                     入門書 </p> 
+                <div class="form-group">
+                    <label class="label-left-margin">評価点</label>
+                    <input  v-model="book.evaluation" placeholder="評価点" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="label-left-margin">検索件数</label>
+                    <span v-if="book.classificationcode == 1">ブログ</span>　{{book.title}}　{{book.publisher}}　{{book.author}}</label>
+                    <input  v-model="book.search_point" placeholder="検索件数" class="form-control">
+                </div>
                 <div class="button_wrapper" style="text-align:center;">
                     <button @click="updateBook" class="btn btn-primary">修正</button>
-                </div>       
+                </div>    
             </b-modal>
         </diV>
     </div>
-
 </template>
 
 <script>
@@ -107,7 +115,9 @@
                     amazon:'',
                     rakuten:'',
                     publication_date:'',
-                    introductory:false
+                    introductory:false,
+                    search_point:'',
+                    evaluation:'',
                 },
                 category: '',
                 categories: '',
