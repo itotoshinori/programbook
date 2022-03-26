@@ -11,7 +11,7 @@
             <table style="border-color: #ff0000;">
                 <tr>
                     <span v-for="book in books" :key="book.id">
-                        <span v-if="book.category_code1 == category.id && book.category_rank <= 16">
+                        <span v-if="book.category_code1 == category.id">
                             <td width="180px" height="550px" class="td_style">
                                 <div class="td_inner">
                                     <p class="photo_box">
