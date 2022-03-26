@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div><button @click="allDisplay()" class="btn btn-primary limit_link">{{limitTitle}}</button></div>
+        <div><button @click="allDisplay()" class="btn btn-warning limit_link">{{limitTitle}}</button></div>
         <span style="display:none">{{ i = 0 }}</span>
         <span v-for="category in categories_rankings">
                 <button @click="toCategory(category.id)" class="btn btn-secondary top_link">{{ category.name }}</button>
@@ -200,6 +200,7 @@
     }
 
     .limit_link{
+        width:150px;
         margin: 5px 5px 5px 0;
     }
     
