@@ -91,7 +91,7 @@
                 admin_status:'',
                 ranking:'',
                 limit:16,
-                limitTitle:"全表示"
+                limitTitle:"全表示(初期16件)"
             }
         },
         computed: {
@@ -200,8 +200,8 @@
     }
 
     .limit_link{
-        width:150px;
-        margin: 5px 5px 5px 0;
+        width:200px;
+        margin: 5px 5px 10px 0;
     }
     
     .site_link{
