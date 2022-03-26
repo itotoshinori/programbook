@@ -1,17 +1,18 @@
 <template>
     <div id="app">
+        <div><button @click="allDisplay()" class="btn btn-primary limit_link">{{limitTitle}}</button></div>
         <span style="display:none">{{ i = 0 }}</span>
         <span v-for="category in categories_rankings">
                 <button @click="toCategory(category.id)" class="btn btn-secondary top_link">{{ category.name }}</button>
             <span style="display:none">{{ i = i +1 }}</span>
         </span>
         <span v-for="category in categories_rankings">
-            <span style="display:none">{{ rank=0 }}</span>
-            <div><span class="category_title">{{category.name}}</span><a name :id="category.id"></a><span @click="scrollTop()">先頭に戻る</span></div>
+            <div><span class="category_title">{{category.name}}</span><a name :id="category.id"></a>
+            <span @click="scrollTop()">先頭に戻る</span></div>
             <table style="border-color: #ff0000;">
                 <tr>
                     <span v-for="book in books" :key="book.id">
-                        <span v-if="book.category_code1 == category.id">
+                        <span v-if="book.category_code1 == category.id && book.category_rank<=limit">
                             <td width="180px" height="550px" class="td_style">
                                 <div class="td_inner">
                                     <p class="photo_box">
@@ -88,7 +89,9 @@
                 category_num: '',
                 classificationcodes:'',
                 admin_status:'',
-                ranking:''
+                ranking:'',
+                limit:3,
+                limitTitle:"全表示"
             }
         },
         computed: {
@@ -137,6 +140,15 @@
                     top: 0,
                     behavior: "smooth"
                 });
+            },
+            allDisplay: function(){
+                if(this.limitTitle == "全表示"){
+                    this.limit = 1000
+                    this.limitTitle="項目毎16件迄"
+                }else{
+                    this.limit = 16
+                    this.limitTitle="全表示"
+                }
             }
         },
     }
@@ -185,6 +197,10 @@
 
     .classificationcode_wide{
         width:55px;
+    }
+
+    .limit_link{
+        margin: 5px 5px 5px 0;
     }
     
     .site_link{
