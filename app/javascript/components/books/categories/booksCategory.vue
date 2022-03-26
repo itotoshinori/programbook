@@ -90,7 +90,7 @@
                 classificationcodes:'',
                 admin_status:'',
                 ranking:'',
-                limit:3,
+                limit:16,
                 limitTitle:"全表示"
             }
         },
