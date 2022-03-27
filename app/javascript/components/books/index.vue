@@ -251,26 +251,6 @@
         width: 90%;
     }
 
-    .form {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-
-        &-control {
-            width: 450px;
-            min-height: 24px;
-            font-size: 1rem;
-            border: 1px solid #ced4da;
-            padding: 5px;
-        }
-    }
-
-    button {
-        width: 200px;
-    }
-
     a {
         color: blue;
         text-decoration: none;
@@ -288,56 +268,6 @@
         margin-left: 10px;
         font-size: 30px;
         font-weight: bold;
-    }
-
-    .menu {
-        padding: 12px;
-        color: #5a5c5f;
-    }
-
-    .menu-card {
-        width: 16.5%;
-        margin-top: 35px;
-    }
-
-    .menu-card-inner {
-        padding: 2px 10px 2px 10px;
-        background-color: #f7f7f7;
-        border-radius: 7px;
-        box-shadow: 1px 1px 4px #d2d4d6;
-        text-align: center;
-        margin: 0 4px;
-        height: 450px;
-    }
-
-    .menu-title {
-        margin-bottom: 8px;
-        font-size: 15px;
-        text-align: left;
-    }
-
-    .menu-text {
-        font-size: 15px;
-        text-align: left;
-    }
-
-    .menu-card-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .photo_box {
-        margin: 2px 0.5px 0.5px 0.5px;
-        padding: 0px;
-        height: 250px;
-    }
-
-    .photo_just {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 160px;
-        height: auto;
     }
 
     .display-none {

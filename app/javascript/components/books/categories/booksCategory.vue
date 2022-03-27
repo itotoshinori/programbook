@@ -91,7 +91,7 @@
                 admin_status:'',
                 ranking:'',
                 limit:16,
-                limitTitle:"全表示(初期16件)"
+                limitTitle:"全表示(初期項目毎16件)"
             }
         },
         computed: {
@@ -142,12 +142,12 @@
                 });
             },
             allDisplay: function(){
-                if(this.limitTitle == "全表示"){
+                if(this.limitTitle == "全表示(初期項目毎16件)"){
                     this.limit = 1000
                     this.limitTitle="項目毎16件迄"
                 }else{
                     this.limit = 16
-                    this.limitTitle="全表示"
+                    this.limitTitle="全表示(初期項目毎16件)"
                 }
             }
         },
@@ -156,7 +156,7 @@
 
 <style lang="scss" scoped>
     .top_link{
-        width:100px;
+        width:110px;
         margin:0px 5px 10px 0;
     }
 

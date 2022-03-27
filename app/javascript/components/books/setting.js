@@ -20,9 +20,10 @@ function func1() {
           {"id":16,"ranking":20,"name":"Vue"},
           {"id":17,"ranking":14,"name":"Swift"},
           {"id":18,"ranking":18,"name":"TypeScript"},
-          {"id":19,"ranking":21,"name":"Flutter"},
+          {"id":19,"ranking":22,"name":"Flutter"},
           {"id":20,"ranking":11,"name":"C++.net"},
           {"id":21,"ranking":9,"name":"機械学習"},
+          {"id":22,"ranking":21,"name":"ReactNative"},
         ]
     return categories
   }
