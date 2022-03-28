@@ -4,7 +4,7 @@
       <h2>{{book.title}}</h2>
       <figure>
         <span v-if="book.photo">
-            <img :src="book.photo" />
+            <img :src="book.photo" class="photo_just"/>
         </span>
       </figure>
       <h5>著　者：{{book.author}}</h5>
@@ -105,6 +105,13 @@ figure {
 	float: left;
 	margin: 0 15px 15px 0;
 	width: 30%;
+}
+.photo_just {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: auto;
 }
 figure img {
 	max-width: 100%;
