@@ -3,7 +3,7 @@
         <div><button @click="allDisplay()" class="btn btn-warning limit_link">{{limitTitle}}</button></div>
         <span style="display:none">{{ i = 0 }}</span>
         <span v-for="category in categories_rankings">
-                <button @click="toCategory(category.id)" class="btn btn-secondary top_link">{{ category.name }}</button>
+            <button @click="toCategory(category.id)" class="btn btn-secondary top_link">{{ category.name }}</button>
             <span style="display:none">{{ i = i +1 }}</span>
         </span>
         <span v-for="category in categories_rankings">
@@ -91,7 +91,7 @@
                 admin_status:'',
                 ranking:'',
                 limit:16,
-                limitTitle:"全表示(初期項目毎16件)"
+                limitTitle:"全表示(初期項目毎16件)", 
             }
         },
         computed: {
@@ -127,7 +127,6 @@
                 }
             },
             toCategory:function(id){
-                //alert("テスト成功！" + id)
                 window.location.href = '/#' + id;
             },
             sortedCategoriesByRanking() {
@@ -149,7 +148,7 @@
                     this.limit = 16
                     this.limitTitle="全表示(初期項目毎16件)"
                 }
-            }
+            },
         },
     }
 </script>

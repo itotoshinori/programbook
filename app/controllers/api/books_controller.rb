@@ -10,28 +10,28 @@ class Api::BooksController < ApplicationController
         @book = Book.find(params[:id])
     end
     def update
-        @book = Book.find(params[:id])
-        @book.update(book_params)
-        if @book.save
-          Book.new.total_point_make(params[:id])
-          Book.new.category_rank_make(params[:id])
-          render json: show, status: 200
-        else
-          render json: @book.errors, status: :unprocessable_entity
-        end
+          @book = Book.find(params[:id])
+          @book.update(book_params)
+          if @book.save and user_signed_in?
+            Book.new.total_point_make(params[:id])
+            Book.new.category_rank_make(params[:id])
+            render json: show, status: 200
+          else
+            render json: @book.errors, status: :unprocessable_entity
+          end
     end
-    def create
+    def create  
         @book = Book.new(book_params)
-        if @book.save
+        if @book.save and user_signed_in?
           render :show, status: :created
           Book.new.total_point_make(@book.id)
           Book.new.category_rank_make(@book.id)
         else
           render json: @book.errors, status: :unprocessable_entity
-        end 
+        end
     end
     def destroy
-        Book.find(params[:id]).destroy
+        Book.find(params[:id]).destroy 
     end
      
     private

@@ -1,4 +1,12 @@
 class Book < ApplicationRecord
+    validates :title, presence: true
+    validates :photo, presence: true
+    validates :classificationcode, presence: true
+    validates :category_code1, presence: true
+    validates :official_site, presence: true
+    validates :search_point, presence: true
+    validates :evaluation, presence: true
+
     def total_point_make(id)
         book = Book.find(id)
         evaluation = book.evaluation

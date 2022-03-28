@@ -1,8 +1,24 @@
 <template>
     <div id="app">
         <div class="container">
+            <span v-if="admin_status==true">
+                <p>
+                    <input v-model="query" placeholder="グーグルブックスワード検索" class="input-primary search_input" />
+                    <button @click="getResult()" class="btn btn-primary btn-sm add_button">検索</button>
+                </p>
+                <div v-for="(item,index) in items">
+                    <p>
+                        <button @click="serach_click(index)" class="btn btn-primary">追加</button>
+                        {{ item.volumeInfo.title }}
+                        作　者：{{item.volumeInfo.authors[0]}}
+                        出版社：{{ item.volumeInfo.publisher }}
+                    </p>
+                </div>
+            </span>
             <div>
-                <span v-if="admin_status==true"><b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button></span>
+                <span v-if="admin_status==true">
+                    <b-button pill v-b-modal.input-modal variant="primary" style="margin-bottom:10px;">新規</b-button>
+                </span>
                 <b-modal id="input-modal" title="新規登録" hide-footer>
                     <div class="form">
                         <div class="form-group">
@@ -40,7 +56,7 @@
                         <div class="form-group">
                             <label class="label-left-margin">画像URL</label>
                             <input v-model="post.photo" placeholder="画像URL" class="form-control">
-                            <span v-if="error.description">
+                            <span v-if="error.photo">
                                 <div style="color:red;">{{ error.photo }}</div>
                             </span>
                         </div>
@@ -100,16 +116,23 @@
                         </div>
                         </span>
                     </div>
-                    <p class="modal_checkbox"><input v-model="post.introductory" type="checkbox" name="checkbox"  />
-                    入門書 </p>
+                    <p class="modal_checkbox"><input v-model="post.introductory" type="checkbox" name="checkbox" />
+                        入門書 </p>
                     <div class="form-group">
                         <label class="label-left-margin">評価点</label>
-                        <input  v-model="post.evaluation" placeholder="評価点" class="form-control">
+                        <input v-model="post.evaluation" placeholder="評価点" class="form-control">
+                    </div>
+                    <div v-if="error.search_point">
+                        <div style="color:red;">{{ error.search_point }}</div>
                     </div>
                     <div class="form-group">
-                        <label class="label-left-margin">検索件数（１年縛り　本はブログ+本名+作者+作者 本以外はブログを付けない）
-                        <span v-if="post.classificationcode == 1">ブログ</span>　{{post.title}}　{{post.publisher}}　{{post.author}}</label>
+                        <label class="label-left-margin">検索件数
+                            <span
+                                v-if="post.classificationcode == 1">ブログ</span>　{{post.title}}　{{post.publisher}}　{{post.author}}</label>
                         <input v-model="post.search_point" placeholder="検索件数" class="form-control">
+                    </div>
+                    <div v-if="error.evaluation">
+                        <div style="color:red;">{{ error.evaluation }}</div>
                     </div>
                     <p class="text-center"><button @click="addBook" class="btn btn-primary">追加</button></p>
                 </b-modal>
@@ -149,24 +172,30 @@
                     amazon: '',
                     rakuten: '',
                     publication_date: '',
-                    introductory:false,
-                    search_point:'',
-                    evaluation:'',
+                    introductory: false,
+                    search_point: '',
+                    evaluation: '',
                 },
                 error: {
                     title: "",
                     photo: '',
                     publisher: '',
                     author: '',
+                    photo: '',
                     classificationcode: '',
                     category_code1: '',
                     official_site: '',
                     amazon: '',
-                    publication_date: ''
+                    publication_date: '',
+                    search_point: '',
+                    evaluation: '',
+                    message: '入力して下さい'
                 },
                 category: '',
                 categories: '',
-                admin_status:''
+                admin_status: '',
+                query: '',
+                items: [],
             }
         },
         computed: {
@@ -179,8 +208,9 @@
             this.classificationcode = setting.func2();
             axios.get('/api/users/1')
                 .then(response => (
-                this.admin_status = response.data.admin
-            ))
+                    this.admin_status = response.data.admin
+                ))
+            this.getResult();
         },
         methods: {
             addBook: function () {
@@ -190,40 +220,49 @@
                     this.post.classificationcode != '' &&
                     this.post.category_code1 != '' &&
                     this.post.official_site != '' &&
-                    this.post.publication_date != '') {
-                    if(this.$store.dispatch('books/createBook', this.post)){
+                    this.post.publication_date != '' &&
+                    this.post.search_point != '' &&
+                    this.post.evaluation != ''
+                ) {
+                    if (this.$store.dispatch('books/createBook', this.post)) {
                         this.post = {}
                         this.error = {}
                         this.$store.dispatch('books/fetchBooks')
                         this.$store.dispatch('books/fetchBooks')
                         this.closeModal()
-                    }else{
+                    } else {
                         alert('データの登録に失敗しました。文字の長さ等のご確認をお願いします')
-                    }  
+                    }
                 } else {
                     if (this.post.title == '') {
-                        this.error.title = "入力して下さい"
+                        this.error.title = this.error.message
                     }
                     if (this.post.photo == '') {
-                        this.error.photo = "入力して下さい"
+                        this.error.photo = this.error.message
                     }
                     if (this.post.author == '') {
-                        this.error.author = "入力して下さい"
+                        this.error.author = this.error.message
                     }
                     if (this.post.publisher == '') {
-                        this.error.publisher = "入力して下さい"
+                        this.error.publisher = this.error.message
                     }
                     if (this.post.official_site == '') {
-                        this.error.official_site = "入力して下さい"
+                        this.error.official_site = this.error.message
                     }
                     if (this.post.classificationcode == '') {
-                        this.error.classificationcode = "入力して下さい"
+                        this.error.classificationcode = this.error.message
                     }
                     if (this.post.category_code1 == '') {
-                        this.error.category_code1 = "入力して下さい"
+                        this.error.category_code1 = this.error.message
                     }
                     if (this.post.publication_date == '') {
-                        this.error.publication_date = "入力して下さい"
+                        this.error.publication_date = this.error.message
+                    }
+                    if (this.post.search_point == '') {
+                        this.error.search_point = this.error.message
+                    }
+                    if (this.post.evaluation == '') {
+                        this.error.evaluation = this.error.message
                     }
                 }
             },
@@ -234,12 +273,35 @@
             closeModal: function () {
                 // 閉じる
                 this.$bvModal.hide('input-modal')
+            },
+            serach_click: function (id) {
+                let item = this.items[id]
+                this.post.title = item.volumeInfo.title
+                this.post.publisher = item.volumeInfo.publisher
+                this.post.author = item.volumeInfo.authors[0]
+                this.post.description = item.volumeInfo.description
+                this.post.publication_date = item.volumeInfo.publishedDate
+                this.post.classificationcode = 1
+                this.$bvModal.show('input-modal')
+            },
+            getResult: async function () {
+                if (this.query) {
+                    axios.get("https://www.googleapis.com/books/v1/volumes?q=title" + this.query).then(response => {
+                        console.log(response.data);
+                        this.items = response.data.items;
+                    });
+                }
             }
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    .search_input {
+        border: 2px #ff0000 double;
+        width: 300px;
+    }
+
     img {
         width: 100%;
         height: 400px;
@@ -249,11 +311,6 @@
 
     .container {
         width: 90%;
-    }
-
-    a {
-        color: blue;
-        text-decoration: none;
     }
 
     /* リンクがアクティブになっているときに適用 */
@@ -278,7 +335,7 @@
         margin-left: 5px;
     }
 
-    .modal_checkbox{
+    .modal_checkbox {
         margin-left: 20px;
     }
 </style>
