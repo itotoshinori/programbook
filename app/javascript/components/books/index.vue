@@ -281,6 +281,7 @@
                 this.post.author = item.volumeInfo.authors[0]
                 this.post.description = item.volumeInfo.description
                 this.post.publication_date = item.volumeInfo.publishedDate
+                this.post.photo = item.volumeInfo.imageLinks.thumbnail
                 this.post.classificationcode = 1
                 this.$bvModal.show('input-modal')
             },
