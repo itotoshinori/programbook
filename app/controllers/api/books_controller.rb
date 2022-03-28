@@ -10,19 +10,19 @@ class Api::BooksController < ApplicationController
         @book = Book.find(params[:id])
     end
     def update
-          @book = Book.find(params[:id])
-          @book.update(book_params)
-          if @book.save and user_signed_in?
-            Book.new.total_point_make(params[:id])
-            Book.new.category_rank_make(params[:id])
-            render json: show, status: 200
-          else
-            render json: @book.errors, status: :unprocessable_entity
-          end
+        @book = Book.find(params[:id])
+        @book.update(book_params)
+        if @book.save
+          Book.new.total_point_make(params[:id])
+          Book.new.category_rank_make(params[:id])
+          render json: show, status: 200
+        else
+          render json: @book.errors, status: :unprocessable_entity
+        end
     end
     def create  
         @book = Book.new(book_params)
-        if @book.save and user_signed_in?
+        if @book.save
           render :show, status: :created
           Book.new.total_point_make(@book.id)
           Book.new.category_rank_make(@book.id)
@@ -36,6 +36,6 @@ class Api::BooksController < ApplicationController
      
     private
     def book_params
-        params.permit(:title, :description, :photo, :publisher, :author, :classificationcode, :category_code1, :category_code2, :category_code3, :official_site, :amazon, :rakuten, :publication_date, :introductory, :evaluation, :search_point)
+        params.permit(:id, :title, :description, :photo, :publisher, :author, :classificationcode, :category_code1, :category_code2, :category_code3, :official_site, :amazon, :rakuten, :publication_date, :introductory, :evaluation, :search_point)
     end
 end

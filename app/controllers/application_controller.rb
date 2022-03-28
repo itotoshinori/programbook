@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
             redirect_to  new_user_session_path
         end
     end
+    def admin_user
+        if user_signed_in?
+            @admin = true
+        else
+            @admin = false
+        end
+    end
 end
