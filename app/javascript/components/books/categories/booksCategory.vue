@@ -23,7 +23,7 @@
                                     <p class="menu-title">
                                         <span class="badge badge-dark">{{ book.category_rank }}位</span>
                                         <span v-if="book.total_point>=80" class="badge badge-warning" >高評価</span>
-                                        <router-link :to="`books/detail/${book.id}`">{{book.title}}</router-link>
+                                        <router-link :to="`books/detail/${book.id}`" target="_blank">{{book.title}}</router-link>
                                         <span v-if="book.introductory" class="badge badge-info">入門書</span>
                                         <span v-if="admin_status == true" @click="deleteBook(book.id)" class="badge badge-danger">削除</span>
                                     </p>

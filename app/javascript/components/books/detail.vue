@@ -37,11 +37,11 @@
           <a :href="book.rakuten" target="_blank" class="btn btn-danger site_link">楽天</a>
         </span>
       </p>
-      <p><a href="#"  onclick="history.back(-1);return false;">前にページに戻る</a></p>
+      <a href="#" onClick="window.close();">ウィンドウを閉じる</a><br/>
       <span v-if="admin_status==true">
         <p><Input /></p>
       </span>
-    </div>
+    </div>  
   </div>  
 </template>
  
