@@ -40,7 +40,7 @@
           <a :href="book.googlebooks" target="_blank" class="btn btn-info site_link">Google</a>
         </span>
       </p>
-      <p><a href="#" onClick="window.close();">ウィンドウを閉じる</a></p>
+      <p><a href="javascript:history.back();">前のページに戻る</a></p>
       <p class="output">{{book.description}}</p>
       <span v-if="admin_status==true">
         <p><Input /></p>
