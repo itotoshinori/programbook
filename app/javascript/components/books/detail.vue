@@ -36,6 +36,9 @@
         <span v-if="book.rakuten">
           <a :href="book.rakuten" target="_blank" class="btn btn-danger site_link">楽天</a>
         </span>
+        <span v-if="book.googlebooks">
+          <a :href="book.googlebooks" target="_blank" class="btn btn-info site_link">Google</a>
+        </span>
       </p>
       <p><a href="#" onClick="window.close();">ウィンドウを閉じる</a></p>
       <p class="output">{{book.description}}</p>

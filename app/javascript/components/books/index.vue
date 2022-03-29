@@ -114,6 +114,10 @@
                             <label class="label-left-margin">楽天URL</label>
                             <input v-model="post.rakuten" placeholder="楽天URL" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label class="label-left-margin">GoogleBooks</label>
+                            <input v-model="post.googlebooks" placeholder="GoogleBooksURL" class="form-control">
+                        </div>
                         </span>
                     </div>
                     <p class="modal_checkbox"><input v-model="post.introductory" type="checkbox" name="checkbox" />
@@ -171,10 +175,11 @@
                     official_site: '',
                     amazon: '',
                     rakuten: '',
+                    googlebooks:'',
                     publication_date: '',
                     introductory: false,
                     search_point: '',
-                    evaluation: '',
+                    evaluation: '',  
                 },
                 error: {
                     title: "",
@@ -281,6 +286,7 @@
                 this.post.author = item.volumeInfo.authors[0]
                 this.post.description = item.volumeInfo.description
                 this.post.publication_date = item.volumeInfo.publishedDate
+                this.post.googlebooks = item.volumeInfo.infoLink
                 this.post.photo = item.volumeInfo.imageLinks.thumbnail
                 this.post.classificationcode = 1
                 this.$bvModal.show('input-modal')

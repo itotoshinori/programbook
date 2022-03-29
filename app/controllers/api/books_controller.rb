@@ -36,6 +36,6 @@ class Api::BooksController < ApplicationController
      
     private
     def book_params
-        params.permit(:id, :title, :description, :photo, :publisher, :author, :classificationcode, :category_code1, :category_code2, :category_code3, :official_site, :amazon, :rakuten, :publication_date, :introductory, :evaluation, :search_point)
+        params.permit(:id, :title, :description, :photo, :publisher, :author, :classificationcode, :category_code1, :category_code2, :category_code3, :official_site, :amazon, :rakuten, :googlebooks, :publication_date, :introductory, :evaluation, :search_point)
     end
 end

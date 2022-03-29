@@ -71,21 +71,26 @@
                     <label class="label-left-margin">楽天URL</label>
                     <input v-model="book.rakuten" placeholder="楽天URL" class="form-control">
                 </div>
+                <div class="form-group">
+                    <label class="label-left-margin">GoogleBooks</label>
+                    <input v-model="book.googlebooks" placeholder="GoogleBooksURL" class="form-control">
+                </div>
                 </span>
-                <p class="modal_checkbox"><input v-model="book.introductory" type="checkbox" name="checkbox"  />
-                    入門書 </p> 
+                <p class="modal_checkbox"><input v-model="book.introductory" type="checkbox" name="checkbox" />
+                    入門書 </p>
                 <div class="form-group">
                     <label class="label-left-margin">評価点</label>
-                    <input  v-model="book.evaluation" placeholder="評価点" class="form-control">
+                    <input v-model="book.evaluation" placeholder="評価点" class="form-control">
                 </div>
                 <div class="form-group">
                     <label class="label-left-margin">検索件数</label>
-                    <span v-if="book.classificationcode == 1">ブログ</span>　{{book.title}}　{{book.publisher}}　{{book.author}}</label>
-                    <input  v-model="book.search_point" placeholder="検索件数" class="form-control">
+                    <span
+                        v-if="book.classificationcode == 1">ブログ</span>　{{book.title}}　{{book.publisher}}　{{book.author}}</label>
+                    <input v-model="book.search_point" placeholder="検索件数" class="form-control">
                 </div>
                 <div class="button_wrapper" style="text-align:center;">
                     <button @click="updateBook" class="btn btn-primary">修正</button>
-                </div>    
+                </div>
             </b-modal>
         </diV>
     </div>
@@ -101,23 +106,23 @@
             return {
                 id: 0,
                 post: {
-                    id:'',
-                    title:'',
+                    id: '',
+                    title: '',
                     description: '',
-                    photo:'',
-                    publisher:'',
-                    author:'',
-                    classificationcode:'',
-                    category_code1:'',
-                    category_code2:'',
-                    category_code3:'',
-                    official_site:'',
-                    amazon:'',
-                    rakuten:'',
-                    publication_date:'',
-                    introductory:false,
-                    search_point:'',
-                    evaluation:'',
+                    photo: '',
+                    publisher: '',
+                    author: '',
+                    classificationcode: '',
+                    category_code1: '',
+                    category_code2: '',
+                    category_code3: '',
+                    official_site: '',
+                    amazon: '',
+                    rakuten: '',
+                    publication_date: '',
+                    introductory: false,
+                    search_point: '',
+                    evaluation: '',
                 },
                 category: '',
                 categories: '',
@@ -137,20 +142,20 @@
             setBook: function () {
                 this.$store.dispatch('books/fetchBook', this.id)
             },
-            updateBook: function(){
+            updateBook: function () {
                 this.post.id = this.book.id
                 this.post = this.book
-                if(this.$store.dispatch('books/updateBook',this.post)){
+                if (this.$store.dispatch('books/updateBook', this.post)) {
                     this.closeModal()
-                }else{
+                } else {
                     alert('データの更新に失敗しました。文字の長さなどを確認願います')
                 }
             },
-            openModal: function() {
+            openModal: function () {
                 // 開く
                 this.$bvModal.show('input-modal')
             },
-            closeModal: function() {
+            closeModal: function () {
                 // 閉じる
                 this.$bvModal.hide('input-modal')
             }
@@ -220,7 +225,7 @@
         width: 120px;
     }
 
-    .modal_checkbox{
+    .modal_checkbox {
         margin-left: 5px;
     }
 </style>
