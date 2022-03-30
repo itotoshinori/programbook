@@ -1,6 +1,18 @@
 <template>
     <div id="app">
         <div class="container">
+            <p>
+                <button @click="displayLegend()" class="btn btn-primary">{{layLegendTittle}}</button>
+                <ul :class="legend">
+                    <div class="legendBox">
+                        <li>お勧めソフトウェア関連の教材を言語別に紹介します</li>
+                        <li>教材は、書籍・サイト・動画などの媒体のものを紹介しております</li>
+                        <li>発刊から２年度以下のものに絞っております</li>
+                        <li>ランキングは独自の調査で点数付けしてつけてます</li>
+                        <li>ご意見や改善要望があればメールフォームよりお願いします</li>
+                    </div>
+                </ul>  
+            </P>
             <span v-if="admin_status==true">
                 <p>
                     <input v-model="query" placeholder="グーグルブックスワード検索" class="input-primary search_input" />
@@ -201,6 +213,8 @@
                 admin_status: '',
                 query: '',
                 items: [],
+                layLegendTittle:"説明文を表示する",
+                legend:"legendUnDisplay"
             }
         },
         computed: {
@@ -215,7 +229,6 @@
                 .then(response => (
                     this.admin_status = response.data.admin
                 ))
-            this.getResult();
         },
         methods: {
             addBook: function () {
@@ -293,10 +306,22 @@
             },
             getResult: async function () {
                 if (this.query) {
-                    axios.get("https://www.googleapis.com/books/v1/volumes?q=title" + this.query).then(response => {
-                        console.log(response.data);
+                    axios.get("https://www.googleapis.com/books/v1/volumes?q=title" + this.query)
+                    .then(response => {
                         this.items = response.data.items;
-                    });
+                    })
+                    .catch(error => {
+                        alert("取り込みに失敗しました")
+                    })
+                }
+            },
+            displayLegend:function(){
+                if(this.layLegendTittle == "説明文を表示する"){
+                    this.layLegendTittle = "説明文を非表示";
+                    this.legend="legendDisplay";
+                }else{
+                    this.layLegendTittle = "説明文を表示する"
+                    this.legend="legendUnDisplay";
                 }
             }
         }
@@ -304,6 +329,24 @@
 </script>
 
 <style lang="scss" scoped>
+    .legendDisplay{
+        margin-left:0px; 
+    }
+    .legendUnDisplay{
+        margin-left:0px; 
+        display:none;
+    }
+    .legendBox {
+        width:50%;
+        padding: 0.5em 1em;
+        margin: 0 0;
+        background: #f0f7ff;
+        border: dashed 2px #5b8bd0;/*点線*/
+    }
+    .legendBox li {
+        margin: 0; 
+        padding: 0;
+    }
     .search_input {
         border: 2px #ff0000 double;
         width: 300px;
