@@ -32,7 +32,7 @@ function func1() {
     const classificationcodes =
         [
             {"id":0,"name":""},
-            {"id":1,"name":"本"},
+            {"id":1,"name":"書籍"},
             {"id":2,"name":"サイト"},
             {"id":3,"name":"動画"},
             {"id":4,"name":"その他"},

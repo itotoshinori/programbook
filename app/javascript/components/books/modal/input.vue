@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-group">
                     <input type="radio" id="1" value="1" v-model="book.classificationcode">
-                    <label class="label-left-margin">本</label>
+                    <label class="label-left-margin">書籍</label>
                     <input type="radio" id="2" value="2" v-model="book.classificationcode">
                     <label class="label-left-margin">サイト</label>
                     <input type="radio" id="3" value="3" v-model="book.classificationcode">
