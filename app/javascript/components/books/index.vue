@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <div class="container">
+            
             <p>
                 <button @click="displayLegend()" class="btn btn-primary">{{layLegendTittle}}</button>
                 <ul :class="legend">
@@ -170,7 +171,7 @@
     export default {
         components: {
             Books,
-            Home
+            Home,
         },
         data: function () {
             return {
@@ -226,9 +227,12 @@
             this.categories = setting.func1();
             this.classificationcode = setting.func2();
             axios.get('/api/users/1')
-                .then(response => (
-                    this.admin_status = response.data.admin
-                ))
+            .then(response => (
+                this.admin_status = response.data.admin
+            ))
+            .catch(response => (
+                console.log('ログインなし')
+            ))         
         },
         methods: {
             addBook: function () {

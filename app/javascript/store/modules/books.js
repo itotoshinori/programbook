@@ -4,11 +4,13 @@ const state = {
  books:"books",
  book:'',
  createBooks:'',
+ mode:16
 }
 
 const getters = {
   books: state => state.books,
   book: state => state.book,
+  mode:state => state.mode
 }
 
 const actions = {
@@ -77,6 +79,9 @@ const actions = {
           .then(response => (
           commit('deleteBook', response.data)
     ))
+  },
+  changeMode({ commit },mode) {
+    commit('changeMode',mode)
   }
 }
 
@@ -89,6 +94,13 @@ const mutations = {
   deleteBook: function(state,data){
     state.book = data
   },
+  changeMode: function(state,mode) {
+    if(mode==1){
+      state.mode = 16
+    }else{
+      state.mode = 1000
+    }
+  }
 }
 
 export default {

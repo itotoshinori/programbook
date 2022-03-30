@@ -5,14 +5,19 @@
             <button @click="toCategory(category.id)" class="btn btn-secondary top_link">{{ category.name }}</button>
             <span style="display:none">{{ i = i +1 }}</span>
         </span>
-        <div><button @click="allDisplay()" class="btn btn-warning limit_link">{{limitTitle}}</button></div>
+        <div v-if="mode==16">
+            <button @click="changeMode(2)" class="btn btn-warning limit_link">全て表示</button>
+        </div>
+        <div v-else>
+            <button @click="changeMode(1)" class="btn btn-warning limit_link">初期項目毎16件に戻す</button>
+        </div>
         <span v-for="category in categories_rankings">
             <div><span class="category_title">{{category.name}}</span><a name :id="category.id"></a>
             <span @click="scrollTop()">先頭に戻る</span></div>
             <table style="border-color: #ff0000;">
                 <tr>
                     <span v-for="book in books" :key="book.id">
-                        <span v-if="book.category_code1 == category.id && book.category_rank<=limit">
+                        <span v-if="book.category_code1 == category.id && book.category_rank<=mode">
                             <td width="180px" height="550px" class="td_style">
                                 <div class="td_inner">
                                     <p class="photo_box">
@@ -91,8 +96,6 @@
                 classificationcodes:'',
                 admin_status:'',
                 ranking:'',
-                limit:16,
-                limitTitle:"全表示(初期項目毎16件)", 
             }
         },
         computed: {
@@ -100,6 +103,9 @@
                 return this.$store.getters['books/books']
                 return this.$store.getters['books/books']
             },
+            mode(){
+                return this.$store.getters['books/mode']
+            }
         },
         mounted() {
             this.setBooks();
@@ -107,6 +113,7 @@
             this.categories_rankings = setting.func1();
             this.sortedCategoriesByRanking();
             this.classificationcodes = setting.func2();
+            this.limit = 0
         },
         methods: {
             setBooks: function () {
@@ -141,15 +148,9 @@
                     behavior: "smooth"
                 });
             },
-            allDisplay: function(){
-                if(this.limitTitle == "全表示(初期項目毎16件)"){
-                    this.limit = 1000
-                    this.limitTitle="項目毎16件迄"
-                }else{
-                    this.limit = 16
-                    this.limitTitle="全表示(初期項目毎16件)"
-                }
-            },
+            changeMode(id) {
+                this.$store.dispatch('books/changeMode',id)
+            }
         },
     }
 </script>

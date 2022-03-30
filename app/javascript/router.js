@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Article from './components/article.vue'
 import Books from './components/books/index.vue'
 import Book_detail from './components/books/detail.vue'
+//import Book_category from './components/books/categories/booksCategory.vue'
  
 Vue.use(Router)
  
@@ -65,6 +66,6 @@ export default new Router({
       path: '/books/detail/:id',
       name: 'book_detail',
       component: Book_detail
-    }    
+    }      
   ]
 })

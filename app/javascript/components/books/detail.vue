@@ -40,7 +40,7 @@
           <a :href="book.googlebooks" target="_blank" class="btn btn-info site_link">Google</a>
         </span>
       </p>
-      <p><a href="javascript:history.back();">前のページに戻る</a></p>
+      <p><a @click="$router.back()" style="color:blue">前のページに戻る</a></p>
       <p class="output">{{book.description}}</p>
       <span v-if="admin_status==true">
         <p><Input /></p>
