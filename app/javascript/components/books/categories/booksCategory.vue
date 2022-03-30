@@ -1,11 +1,11 @@
 <template>
     <div id="app">
-        <div><button @click="allDisplay()" class="btn btn-warning limit_link">{{limitTitle}}</button></div>
         <span style="display:none">{{ i = 0 }}</span>
         <span v-for="category in categories_rankings">
             <button @click="toCategory(category.id)" class="btn btn-secondary top_link">{{ category.name }}</button>
             <span style="display:none">{{ i = i +1 }}</span>
         </span>
+        <div><button @click="allDisplay()" class="btn btn-warning limit_link">{{limitTitle}}</button></div>
         <span v-for="category in categories_rankings">
             <div><span class="category_title">{{category.name}}</span><a name :id="category.id"></a>
             <span @click="scrollTop()">先頭に戻る</span></div>
