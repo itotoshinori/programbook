@@ -2,7 +2,7 @@
 function func1() {
     const categories =
         [
-          //id順に並び変える
+          //id順に並び替え
           {"id":1,"ranking":1,"name":"HTML"},
           {"id":2,"ranking":2,"name":"C言語"},
           {"id":3,"ranking":3,"name":"C #.net"},
@@ -17,15 +17,16 @@ function func1() {
           {"id":12,"ranking":13,"name":"WordPress"},
           {"id":13,"ranking":17,"name":"React"},
           {"id":14,"ranking":16,"name":"Laravel"},
-          {"id":15,"ranking":20,"name":"Django"},
-          {"id":16,"ranking":21,"name":"Vue"},
+          {"id":15,"ranking":21,"name":"Django"},
+          {"id":16,"ranking":22,"name":"Vue"},
           {"id":17,"ranking":14,"name":"Swift"},
           {"id":18,"ranking":18,"name":"TypeScript"},
-          {"id":19,"ranking":23,"name":"Flutter"},
+          {"id":19,"ranking":24,"name":"Flutter"},
           {"id":20,"ranking":11,"name":"C++.net"},
           {"id":21,"ranking":9,"name":"機械学習"},
-          {"id":22,"ranking":22,"name":"ReactNative"},
+          {"id":22,"ranking":23,"name":"ReactNative"},
           {"id":23,"ranking":19,"name":"JavaSpring"},
+          {"id":24,"ranking":20,"name":"Kotlin"},
         ]
     return categories
   }
