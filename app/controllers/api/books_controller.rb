@@ -14,7 +14,7 @@ class Api::BooksController < ApplicationController
         @book.update(book_params)
         if @book.save
           Book.new.total_point_make(params[:id])
-          Book.new.category_rank_make(params[:id])
+          Book.new.category_rank_make(@book.category_code1)
           render json: show, status: 200
         else
           render json: @book.errors, status: :unprocessable_entity
@@ -25,13 +25,16 @@ class Api::BooksController < ApplicationController
         if @book.save
           render :show, status: :created
           Book.new.total_point_make(@book.id)
-          Book.new.category_rank_make(@book.id)
+          Book.new.category_rank_make(@book.category_code1)
         else
           render json: @book.errors, status: :unprocessable_entity
         end
     end
     def destroy
-        Book.find(params[:id]).destroy 
+        @book = Book.find(params[:id])
+        category_code1 = @book.category_code1
+        @book.destroy
+        Book.new.category_rank_make(category_code1) 
     end
      
     private

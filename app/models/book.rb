@@ -9,7 +9,7 @@ class Book < ApplicationRecord
     validates :publication_date, presence: true
     validates :introductory, inclusion: [true, false]
     validates :search_point, presence: true, numericality: {only_integer: true}
-    validates :evaluation, presence: true, numericality: {only_integer: true}
+    validates :evaluation, presence: true, numericality: {only_double: true}
 
     def total_point_make(id)
         book = Book.find(id)
@@ -19,9 +19,9 @@ class Book < ApplicationRecord
         book.total_point = total_point
         book.save
     end
-    def category_rank_make(id)
-        book = Book.find(id)
-        books = Book.where(category_code1:book.category_code1).order('total_point DESC').order('publication_date DESC')
+    def category_rank_make(category_code1)
+        #book = Book.find(id)
+        books = Book.where(category_code1:category_code1).order('total_point DESC').order('publication_date DESC')
         rank = 1
         books.each do |book_category|
             book_category.category_rank = rank
