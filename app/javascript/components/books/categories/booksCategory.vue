@@ -168,7 +168,7 @@
 
     .td_style{
         background-color: #f7f7f7; 
-        border:5px white solid;
+        border:3px white solid;
     }
     
     .photo_box {

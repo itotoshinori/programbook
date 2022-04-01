@@ -8,8 +8,8 @@ class Book < ApplicationRecord
     validates :official_site, presence: true,format: /\A#{URI::regexp(%w(http https))}\z/
     validates :publication_date, presence: true
     validates :introductory, inclusion: [true, false]
-    validates :search_point, presence: true, numericality: {only_integer: true}
-    validates :evaluation, presence: true, numericality: {only_double: true}
+    #validates :evaluation, presence: true, numericality: {only_double: true}
+    #validates :search_point, presence: true, numericality: {only_integer: true}
 
     def total_point_make(id)
         book = Book.find(id)
