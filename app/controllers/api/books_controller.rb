@@ -12,29 +12,38 @@ class Api::BooksController < ApplicationController
     def update
         @book = Book.find(params[:id])
         @book.update(book_params)
-        if @book.save
-          Book.new.total_point_make(params[:id])
-          Book.new.category_rank_make(@book.category_code1)
-          render json: show, status: 200
-        else
-          render json: @book.errors, status: :unprocessable_entity
+        user_id = params[:user_id]
+        if user_id.present?
+        	user = User.find(user_id) 
+			if @book.save and user.admin
+				Book.new.total_point_make(params[:id])
+				Book.new.category_rank_make(@book.category_code1)
+				render json: show, status: 200
+			else
+			#render json: @book.errors, status: :unprocessable_entity
+			end
         end
     end
     def create  
         @book = Book.new(book_params)
-        if @book.save
-          render :show, status: :created
-          Book.new.total_point_make(@book.id)
-          Book.new.category_rank_make(@book.category_code1)
-        else
-          render json: @book.errors, status: :unprocessable_entity
+        user_id = params[:user_id]
+        if user_id.present?
+			user = User.find(user_id) 
+			if @book.save and user.admin
+				render :show, status: :created
+				Book.new.total_point_make(@book.id)
+				Book.new.category_rank_make(@book.category_code1)
+			else
+			#render  status: :unprocessable_entity, json:{ messages: @books.errors.full_messages }
+				render json: @book.errors.full_messages, status: :unprocessable_entity
+			end
         end
     end
     def destroy
         @book = Book.find(params[:id])
-        category_code1 = @book.category_code1
+		category_code1 = @book.category_code1
         @book.destroy
-        Book.new.category_rank_make(category_code1) 
+        Book.new.category_rank_make(category_code1)
     end
      
     private

@@ -27,8 +27,8 @@ const actions = {
           commit('setBook', response.data)
     ))
   },
-  createBook({ commit }, post) {
-    const response = axios.post('/api/books', {
+  async createBook({ commit }, post) {
+    const response = await axios.post('/api/books', {
       title: post.title,
       description: post.description,
       photo:post.photo,
@@ -48,8 +48,14 @@ const actions = {
       introductory:post.introductory,
       search_point:post.search_point,
       evaluation:post.evaluation,
+      user_id:post.user_id
     })
-    commit('createBook', response.data);
+    .then(response => (
+        commit('createBook', response.data)
+    ))
+      .catch((e) => {
+        console.log(e)
+    })  
   },
   async updateBook({ commit }, post) {
     const response = await axios.put('/api/books/' + post.id, {
@@ -72,10 +78,11 @@ const actions = {
       introductory:post.introductory,
       search_point:post.search_point,
       evaluation:post.evaluation,
+      user_id:post.user_id
     })
   },
   deleteBook({ commit }, id){
-    axios.delete('/api/books/'+id)
+    axios.delete('/api/books/'+ id)
           .then(response => (
           commit('deleteBook', response.data)
     ))

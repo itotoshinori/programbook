@@ -1,16 +1,13 @@
 class Book < ApplicationRecord
-    validates :title, presence: true, uniqueness: true
     validates :photo, presence: true
     validates :publisher, presence: true
     validates :author, presence: true
     validates :classificationcode, presence: true, numericality: {only_integer: true}
     validates :category_code1, presence: true, numericality: {only_integer: true}
-    validates :official_site, presence: true,format: /\A#{URI::regexp(%w(http https))}\z/
+    validates :official_site, presence: true
     validates :publication_date, presence: true
     validates :introductory, inclusion: [true, false]
-    #validates :evaluation, presence: true, numericality: {only_double: true}
-    #validates :search_point, presence: true, numericality: {only_integer: true}
-
+    
     def total_point_make(id)
         book = Book.find(id)
         evaluation = book.evaluation

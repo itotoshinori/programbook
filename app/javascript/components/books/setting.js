@@ -43,11 +43,10 @@ function func1() {
   }
   
   
-  
   // 関数をエクスポートします。
   export default {
     func1,
-    func2
+    func2,
   };
 
 

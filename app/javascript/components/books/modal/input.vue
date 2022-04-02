@@ -123,6 +123,7 @@
                     introductory: false,
                     search_point: '',
                     evaluation: '',
+                    user_id:'',
                 },
                 category: '',
                 categories: '',
@@ -137,6 +138,14 @@
             this.setBook();
             this.categories = setting.func1();
             this.classificationcode = setting.func2();
+            axios.get('/api/users/1')
+            .then(response => (
+                this.admin_status = response.data.admin,
+                this.post.user_id = response.data.id 
+            ))
+            .catch(response => (
+                console.log('ログインなし')
+            ))  
         },
         methods: {
             setBook: function () {

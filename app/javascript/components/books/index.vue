@@ -1,7 +1,6 @@
 <template>
     <div id="app">
-        <div class="container">
-            
+        <div class="container"> 
             <p>
                 <button @click="displayLegend()" class="btn btn-primary">{{layLegendTittle}}</button>
                 <ul :class="legend">
@@ -14,6 +13,7 @@
                     </div>
                 </ul>  
             </P>
+            <p>{{ post.user_id }}</p>
             <span v-if="admin_status==true">
                 <p>
                     <input v-model="query" placeholder="グーグルブックスワード検索" class="input-primary search_input" />
@@ -192,7 +192,8 @@
                     publication_date: '',
                     introductory: false,
                     search_point: '',
-                    evaluation: '',  
+                    evaluation: '',
+                    user_id:'', 
                 },
                 error: {
                     title: "",
@@ -226,7 +227,8 @@
             this.classificationcode = setting.func2();
             axios.get('/api/users/1')
             .then(response => (
-                this.admin_status = response.data.admin
+                this.admin_status = response.data.admin,
+                this.post.user_id = response.data.id 
             ))
             .catch(response => (
                 console.log('ログインなし')
@@ -244,14 +246,15 @@
                     this.post.search_point != '' &&
                     this.post.evaluation != ''
                 ) {
-                    if (this.$store.dispatch('books/createBook', this.post)) {
+                    try {
+                        this.addBookContent(this.post)
                         this.post = {}
                         this.error = {}
                         this.$store.dispatch('books/fetchBooks')
                         this.$store.dispatch('books/fetchBooks')
                         this.closeModal()
-                    } else {
-                        alert('データの登録に失敗しました。文字の長さ等のご確認をお願いします')
+                    } catch {
+                        console.log(e)
                     }
                 } else {
                     if (this.post.title == '') {
@@ -284,6 +287,14 @@
                     if (this.post.evaluation == '') {
                         this.error.evaluation = this.error.message
                     }
+                }
+            },
+            addBookContent: function(post){
+                try {
+                    this.$store.dispatch('books/createBook', post)
+                } catch(err){
+                    const errorMessage = err.response.data || err.message;
+                    console.log(errorMessage);
                 }
             },
             openModal: function () {

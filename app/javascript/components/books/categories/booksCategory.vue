@@ -87,7 +87,8 @@
                     official_site: '',
                     amazon: '',
                     rakuten: '',
-                    publication_date: ''
+                    publication_date: '',
+                    user_id:''
                 },
                 category: '',
                 categories: '',
@@ -113,6 +114,11 @@
             this.categories_rankings = setting.func1();
             this.sortedCategoriesByRanking();
             this.classificationcodes = setting.func2();
+            axios.get('/api/users/1')
+            .then(response => (
+                this.post.user_id = response.data.id,
+                this.admin_status = response.data.admin
+            ))
             this.limit = 0
         },
         methods: {
@@ -120,10 +126,6 @@
                 const category_id = this.category
                 this.$store.dispatch('books/fetchBooks')
                 //this.$store.dispatch('books/fetchBooks',category_id)
-                axios.get('api/users/1')
-                    .then(response => (
-                    this.admin_status = response.data.admin
-                ))
             },
             deleteBook:function(id) {
                 if (window.confirm("NO." + id + "を本当に削除しますか？※削除すれば画面更新がかかります")){
